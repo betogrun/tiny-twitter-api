@@ -1,24 +1,43 @@
-# README
+# Tiny-twitter API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project aims to replicate some popular features of Twitter and provides endpoints for creating and retrieving tweets via an API.
+You can access the API documentation by navigating to `localhost:3000/api-docs` in your web browser after launching the application.
 
-Things you may want to cover:
+### Getting started
 
-* Ruby version
+Follow the steps below to get the development environment up and running
 
-* System dependencies
+Create the database and run the migrations
 
-* Configuration
+```
+docker-compose run --rm web bundle exec rails db:create
+```
 
-* Database creation
+### Running
+```
+docker-compose up
+```
 
-* Database initialization
+## Running the tests
+```
+docker-compose run --rm -e RAILS_ENV=test web bundle exec rspec
+```
 
-* How to run the test suite
+## Generating the API documentation
+```
+docker-compose run --rm bundle exec rails rswag:specs:swaggerize
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+## Debugging
 
-* Deployment instructions
+Get the web container id
 
-* ...
+```
+docker ps
+```
+
+Attach your terminal to the container
+
+```
+docker attach container_id
+```
