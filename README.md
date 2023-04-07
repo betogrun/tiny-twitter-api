@@ -7,7 +7,7 @@ You can access the API documentation by navigating to `localhost:3000/api-docs` 
 
 Follow the steps below to get the development environment up and running
 
-Create the database and run the migrations
+### Create the database and run the migrations
 
 ```
 docker-compose run --rm web bundle exec rails db:create
