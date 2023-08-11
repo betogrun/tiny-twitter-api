@@ -1,4 +1,4 @@
-FROM ruby:3.2
+FROM ruby:3.2.1
 
 ENV BUNDLE_PATH /usr/local/bundle
 
