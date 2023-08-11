@@ -33,24 +33,24 @@ RSpec.describe PlainCase do
     end
 
     it 'has correct deconstruction keys' do
-      expect(success.deconstruct_keys(nil)).to eq({ status: :success, value: :value })
+      expect(success.deconstruct_keys(nil)).to eq({ state: :success, value: :value })
     end
   end
 
   describe 'Failure' do
     let(:test_case) { Class.new(PlainCase) { def initialize; end } }
-    let(:failure) { test_case.new.Failure(:value) }
+    let(:failure) { test_case.new.Failure(value: :value) }
 
     it 'creates a Failure instance' do
       expect(failure).to be_instance_of(PlainCase::Result::Failure)
     end
 
     it 'has correct deconstruction' do
-      expect(failure.deconstruct).to eq([:failure, :value, :error])
+      expect(failure.deconstruct).to eq([:failure, :error, :value])
     end
 
     it 'has correct deconstruction keys' do
-      expect(failure.deconstruct_keys(nil)).to eq({ status: :failure, value: :value, type: :error })
+      expect(failure.deconstruct_keys(nil)).to eq({ state: :failure, value: :value, type: :error })
     end
   end
 end
