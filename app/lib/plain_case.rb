@@ -4,12 +4,12 @@ class PlainCase
   module Result
     Success = Data.define(:value) do
        def deconstruct = [:success, value]
-       def deconstruct_keys(_) = { status: :success, value: value }
+       def deconstruct_keys(_) = { state: :success, value: value }
     end
 
-    Failure = Data.define(:value, :type) do
-      def deconstruct = [:failure, value, type] 
-      def deconstruct_keys(_) = { status: :failure, value: value, type: type }
+    Failure = Data.define(:type, :value) do
+      def deconstruct = [:failure, type, value] 
+      def deconstruct_keys(_) = { state: :failure, type: type, value: value }
     end
   end
 
@@ -19,8 +19,8 @@ class PlainCase
 
   def call(**) = raise NotImplementedError
 
-  def Success(value) = Result::Success.new(value)
+  def Success(value = nil) = Result::Success.new(value)
 
-  def Failure(value, type: :error) = Result::Failure.new(value, type)
+  def Failure(type: :error, value: nil) = Result::Failure.new(type, value)
 end
 
