@@ -23,7 +23,9 @@ paths:
         '422':
           description: User not found
 servers:
-- url: https://{defaultHost}
+- url: "{defaultProtocol}://{defaultHost}"
   variables:
     defaultHost:
-      default: www.example.com
+      default: localhost:3000
+    defaultProtocol:
+      default: http
