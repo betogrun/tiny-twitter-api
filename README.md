@@ -25,7 +25,7 @@ docker-compose run --rm -e RAILS_ENV=test web bundle exec rspec
 
 ## Generating the API documentation
 ```
-docker-compose run --rm bundle exec rails rswag:specs:swaggerize
+docker-compose run --rm web bundle exec rails rswag:specs:swaggerize
 ```
 
 ## Debugging
