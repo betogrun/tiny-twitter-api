@@ -1,0 +1,29 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/users/{id}":
+    get:
+      summary: Retrieve user account
+      tags:
+      - User Account
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: User account found
+        '400':
+          description: Invalid param
+        '422':
+          description: User not found
+servers:
+- url: https://{defaultHost}
+  variables:
+    defaultHost:
+      default: www.example.com
