@@ -3,20 +3,13 @@ module API
     class UserSerializer
       include ActiveModel::Serializers::JSON
 
-      delegate :id, :username, :joined_at, :posts_count, to: :@user
+      delegate :id, :username, :joined_at, to: :@user
 
       def initialize(user)
         @user = user
       end
 
-      def attributes
-        {
-          id:,
-          username:,
-          joined_at:,
-          posts_count:
-        }
-      end
+      def attributes = {id:, username:, joined_at: }
     end
   end
 end
