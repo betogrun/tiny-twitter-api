@@ -44,7 +44,7 @@ group :development, :test do
   gem 'factory_bot_rails', '~> 6.2'
   gem 'faker', '~> 3.1'
   gem 'rspec-rails', '~> 6.0', '>= 6.0.1'
-  gem 'rswag', '~> 2.8'
+  gem 'rswag', '~> 2.10'
   gem 'rubocop-rails', '~> 2.18', require: false
   gem 'shoulda-matchers', '~> 5.3'
 end
