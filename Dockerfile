@@ -1,8 +1,8 @@
-FROM ruby:3.2.1
+FROM ruby:3.2.2
 
 ENV BUNDLE_PATH /usr/local/bundle
 
-RUN apt-get update -qq && apt-get install -y build-essential
+RUN apt-get update -qq && apt-get install -y build-essential libssl-dev
 
 WORKDIR /usr/src/tiny-twitter-api
 
