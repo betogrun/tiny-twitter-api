@@ -19,10 +19,9 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
-  host: <%= ENV.fetch("DATABASE_HOST") %>
-  username: <%= ENV.fetch("DATABASE_USER") %>
-  password: <%= ENV.fetch("DATABASE_PASSWORD") %>
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  url: <%= ENV["DATABASE_URL"] %>
+  
 
 development:
   <<: *default
@@ -84,6 +83,3 @@ test:
 #
 production:
   <<: *default
-  database: tiny_twitter_api_production
-  username: tiny_twitter_api
-  password: <%= ENV["TINY_TWITTER_API_DATABASE_PASSWORD"] %>

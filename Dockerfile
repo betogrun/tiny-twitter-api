@@ -1,11 +1,25 @@
 FROM ruby:3.2.1
 
-ENV BUNDLE_PATH /usr/local/bundle
+ENV RAILS_ENV="production" \
+    BUNDLE_DEPLOYMENT="1" \
+    BUNDLE_PATH="/usr/local/bundle" \
+    BUNDLE_JOBS="4" \
+    BUNDLE_NO_CACHE="true" \
+    BUNDLE_WITHOUT="development,test" \
+    GEM_HOME="/usr/local/bundle"
 
-RUN apt-get update -qq && apt-get install -y build-essential
+RUN apt-get update -qq && apt-get install -y build-essential git
+
+# RUN useradd -m appuser
+# USER appuser
 
 WORKDIR /usr/src/tiny-twitter-api
 
+# COPY --chown=appuser:appuser Gemfile .
+# COPY --chown=appuser:appuser Gemfile.lock .
+# COPY --chown=appuser:appuser . .
+
+# RUN chown -R appuser:appuser /usr/src/tiny-twitter-api
 COPY Gemfile .
 COPY Gemfile.lock .
 
@@ -15,4 +29,5 @@ COPY . .
 
 ENTRYPOINT ["./entrypoint.sh"]
 
-CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+EXPOSE 3000
+CMD ["./bin/rails", "server"]

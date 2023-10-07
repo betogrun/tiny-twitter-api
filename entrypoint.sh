@@ -5,7 +5,12 @@ set -e
 rm -f tmp/pids/server.pid
 
 # Check for gem updates
-bundle check || bundle install --jobs 4
+# bundle check || bundle install --jobs 4
+
+# If running the rails server then create or migrate existing database
+if [ "${*}" == "./bin/rails server" ]; then
+  ./bin/rails db:prepare
+fi
 
 # Exec the container's main process (what's set as CMD in the Dockerfile/docker-compose)
 exec "$@"
