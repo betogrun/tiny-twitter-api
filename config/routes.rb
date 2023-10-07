@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "articles#index"
 
+  get 'alive', to: 'health_checks#show'
+
   namespace :api do
     namespace :v1 do
       resources :users, only: :show
