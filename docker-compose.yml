@@ -23,9 +23,8 @@ services:
       - RAILS_MAX_THREADS=5
       - RAILS_ENV=development
       - RACK_ENV=development
-      - DATABASE_HOST=db
-      - DATABASE_USER=postgres
-      - DATABASE_PASSWORD=password
+      - BUNDLE_WITHOUT=""
+      - DATABASE_URL=postgres://postgres:password@db
     depends_on:
       - db
 

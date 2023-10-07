@@ -1,8 +1,14 @@
 FROM ruby:3.2.1
 
-ENV BUNDLE_PATH /usr/local/bundle
+ENV RAILS_ENV="production" \
+    BUNDLE_DEPLOYMENT="1" \
+    BUNDLE_PATH="/usr/local/bundle" \
+    BUNDLE_JOBS="4" \
+    BUNDLE_NO_CACHE="true" \
+    BUNDLE_WITHOUT="development,test" \
+    GEM_HOME="/usr/local/bundle"
 
-RUN apt-get update -qq && apt-get install -y build-essential
+RUN apt-get update -qq && apt-get install -y build-essential git
 
 WORKDIR /usr/src/tiny-twitter-api
 
@@ -15,4 +21,5 @@ COPY . .
 
 ENTRYPOINT ["./entrypoint.sh"]
 
-CMD ["bundle", "exec", "rails", "s", "-b", "0.0.0.0"]
+EXPOSE 3000
+CMD ["./bin/rails", "server"]
