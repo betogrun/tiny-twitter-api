@@ -10,16 +10,8 @@ ENV RAILS_ENV="production" \
 
 RUN apt-get update -qq && apt-get install -y build-essential git
 
-# RUN useradd -m appuser
-# USER appuser
-
 WORKDIR /usr/src/tiny-twitter-api
 
-# COPY --chown=appuser:appuser Gemfile .
-# COPY --chown=appuser:appuser Gemfile.lock .
-# COPY --chown=appuser:appuser . .
-
-# RUN chown -R appuser:appuser /usr/src/tiny-twitter-api
 COPY Gemfile .
 COPY Gemfile.lock .
 
